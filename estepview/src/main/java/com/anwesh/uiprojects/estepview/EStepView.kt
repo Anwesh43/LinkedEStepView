@@ -85,7 +85,7 @@ class EStepView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun start(cb : () -> Unit) {
+        fun start() {
             if (!animated) {
                 animated = true
                 view.postInvalidate()
@@ -162,6 +162,29 @@ class EStepView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : EStepView) {
+
+        private val animator : Animator = Animator(view)
+
+        private val es : EStep = EStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            es.draw(canvas, paint)
+            animator.animate {
+                es.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            es.startUpdating {
+                animator.start()
+            }
         }
     }
 }
