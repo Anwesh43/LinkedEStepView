@@ -13,6 +13,25 @@ import android.content.Context
 
 val nodes : Int = 5
 
+fun Canvas.drawESNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    val gap : Float = w / (nodes + 1)
+    val size : Float = gap/3
+    save()
+    translate(i * gap + gap, h/2)
+    drawLine(0f, 0f, size, 0f, paint)
+    for (j in 0..1) {
+        val sc : Float = Math.min(0.5f, Math.max(scale - 0.5f * j, 0f)) * 2
+        val sf : Float = 1f - 2 * j
+        val y : Float = size * sf * sc
+        save()
+        drawLine(0f, y, size, 0f, paint)
+        drawLine(0f, 0f, 0f, y, paint)
+        restore()
+    }
+    restore()
+}
 class EStepView(ctx : Context) : View(ctx) {
 
     private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
