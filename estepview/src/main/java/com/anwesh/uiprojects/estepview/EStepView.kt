@@ -30,7 +30,7 @@ fun Canvas.drawESNode(i : Int, scale : Float, paint : Paint) {
         val sf : Float = 1f - 2 * j
         val y : Float = size * sf * sc
         save()
-        drawLine(0f, y, size, 0f, paint)
+        drawLine(0f, y, size, y, paint)
         drawLine(0f, 0f, 0f, y, paint)
         restore()
     }
@@ -195,7 +195,7 @@ class EStepView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : EStepView {
             val view : EStepView = EStepView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
