@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.estepview
  * Created by anweshmishra on 13/10/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Canvas
@@ -187,6 +188,14 @@ class EStepView(ctx : Context) : View(ctx) {
             es.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : EStepView {
+            val view : EStepView = EStepView(activity)
+            activity.setContentView(view)
+            return view 
         }
     }
 }
