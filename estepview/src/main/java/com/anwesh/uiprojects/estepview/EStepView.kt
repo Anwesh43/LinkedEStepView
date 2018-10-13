@@ -18,6 +18,9 @@ fun Canvas.drawESNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
     val size : Float = gap/3
+    paint.color = Color.parseColor("#3F51B5")
+    paint.strokeWidth = Math.min(w, h) / 60
+    paint.strokeCap = Paint.Cap.ROUND
     save()
     translate(i * gap + gap, h/2)
     drawLine(0f, 0f, size, 0f, paint)
