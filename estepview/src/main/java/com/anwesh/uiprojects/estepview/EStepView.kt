@@ -19,6 +19,7 @@ fun Canvas.drawESNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
     val size : Float = gap/3
+    val hk : Float = 0.4f * h
     paint.color = Color.parseColor("#3F51B5")
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
@@ -32,6 +33,7 @@ fun Canvas.drawESNode(i : Int, scale : Float, paint : Paint) {
         save()
         drawLine(0f, y, size, y, paint)
         drawLine(0f, 0f, 0f, y, paint)
+        drawLine(-gap/2 , hk * sf,  -gap/2 + gap * sc, hk * sf, paint)
         restore()
     }
     restore()
